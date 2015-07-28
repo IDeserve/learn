@@ -1,4 +1,4 @@
-# learn
+# IDeserve
 
 * Please subscribe to [IDeserve Youtube Channel!](https://www.youtube.com/channel/UCMNkvKnD3mo3Jj9eTwJllWw) 
 - We have many more video tutorials on interview questions. Please check the following playlists
