@@ -1,0 +1,55 @@
+package questions.saurabh;
+
+public class BinarySearch {
+	
+	// Binary Search - in a sorted array
+	public static int findElementBinarySearch(int[] array, int num) {
+
+		if (array == null || array.length == 0) {
+			return -1;
+		}
+
+		int start = 0;
+		int end = array.length - 1;
+		int mid;
+
+		while (start <= end) {
+
+			if (num == array[start]) {
+				return start;
+			}
+			if (num == array[end]) {
+				return end;
+			}
+
+			if (end - start <= 1) {
+				return num == array[start] ? start : (num == array[end] ? end : -1);
+			}
+
+			mid = (start + end) / 2;
+			if (array[mid] == num) {
+				return mid;
+			} else if (num < array[mid]) {
+				end = mid - 1;
+			} else {
+				start = mid + 1;
+			}
+		}
+
+		return -1;
+	}
+	
+	public static void main(String[] args) {
+
+		int array[] = { 21, 32, 43, 74, 75, 86, 97, 108, 149 };
+		int num = 43;
+		binarySearchTest(array,num);
+		num = 100;
+		binarySearchTest(array, num);
+	}
+	
+	public static void binarySearchTest(int array[], int num) {
+		int index = findElementBinarySearch(array, num);
+		System.out.println("Element " + num + (index >= 0 ? (" found at index " + index) : " not found!"));
+	}
+}
