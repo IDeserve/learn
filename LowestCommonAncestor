@@ -109,9 +109,9 @@ private TreeNode root;
 	}
 	
 	/*
-	 * *****************************************
-	 * Methods for testing level order traversal
-	 * *****************************************
+	 * *******************************************
+	 * Methods for testing getLowestCommonAncestor
+	 * *******************************************
 	 */
 	public static void main(String[] args) {
 		LowestCommonAncestor tree = new LowestCommonAncestor();
