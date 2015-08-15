@@ -1,29 +1,41 @@
-package questions.saurabh;
+package linkedlist.reverse.recursive;
 
+
+/**
+ * <b>IDeserve <br>
+ * <a href="https://www.youtube.com/c/IDeserve">https://www.youtube.com/c/IDeserve</a>
+ * <br><br>
+ * Reverse a linked list - Recursive Solution</b><br>
+ * Given a linked list having n nodes. Reverse the list by nodes using recursive strategy.
+ * <br><br>
+ * Example: <br>
+ * Linked List: <br>
+ * 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> X
+ * <br>
+ * Output: <br>
+ * 10 -> 9 -> 8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> X
+ * <br><br>
+ * <a href="https://www.youtube.com/watch?v=MRe3UsRadKw">Reverse a linked list - Recursive Solution Youtube Link</a> 
+ * @author Saurabh
+ *
+ */
 public class ReverseLinkedListRecursive {
-    private Node head;
+	
+	private Node head;
 
-    public Node getHead() {
-        return head;
-    }
+	public Node getHead() {
+		return head;
+	}
 
-    public void setHead(Node head) {
-        this.head = head;
-    }
-
-    public static void main(String[] args) {
-        ReverseLinkedListRecursive l = new ReverseLinkedListRecursive();
-        l.createTestList(10);
-        l.printlist();
-        l.reverseLinkedListRecursive();
-        l.printlist();
-    }
-
-    public void reverseLinkedListRecursive() {
-        reverseLinkedListRecursive(head);
-    }
-
-    private void reverseLinkedListRecursive(Node curr) {
+	public void setHead(Node head) {
+		this.head = head;
+	}
+	
+	public void reverseLinkedListRecursive() {
+		reverseLinkedListRecursive(head);
+	}
+	
+	private void reverseLinkedListRecursive(Node curr) {
 
         if (curr == null) {
             return;
@@ -38,62 +50,87 @@ public class ReverseLinkedListRecursive {
         curr.getNext().setNext(curr);
         curr.setNext(null);
     }
+	
+	/* 
+	 * ******************************************************
+	 * Following methods are for testing the solution
+	 * ******************************************************
+	 */
+    public static void main(String[] args) {
+		
+    	ReverseLinkedListRecursive list = new ReverseLinkedListRecursive();
+		list.createTestList(10);
+		list.printlist();
+		list.reverseLinkedListRecursive();
+		list.printlist();
+	}
 
-    public void createTestList(int n) {
+	/*
+	 * Create a test list having n nodes from 1 to n 
+	 */
+	public void createTestList(int n) {
+		
+		if(n < 1)
+			return;
+		
+		int i = 1;
+		Node temp = null;
+		while(i <= n) {
+			Node node = new Node(i);		
+			if(head == null) {
+				head = node;
+				temp = head;
+			} else {
+				temp.setNext(node);
+				temp = node;
+			}
+			i++;
+		}
+	}
+	
+	/*
+	 * Print the list
+	 */
+	public void printlist() {
+		
+		Node temp = head;
+		while(temp != null) {
+			System.out.print(temp.getData() + " -> ");
+			temp = temp.getNext();
+		}
+		System.out.println("X");
+	}
+	
+	/**
+	 * Defines a linked list node class
+	 * @author Saurabh
+	 *
+	 */
+	class Node {
 
-        if (n < 1)
-            return;
+		private int data;
+		private Node next;
 
-        int i = 1;
-        Node temp = null;
-        while (i <= n) {
-            Node node = new Node(i);
-            if (head == null) {
-                head = node;
-                temp = head;
-            } else {
-                temp.setNext(node);
-                temp = node;
-            }
-            i++;
-        }
-    }
+		public int getData() {
+			return data;
+		}
 
-    public void printlist() {
+		public void setData(int data) {
+			this.data = data;
+		}
 
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.getData() + " -> ");
-            temp = temp.getNext();
-        }
-        System.out.println("X");
-    }
-}
+		public Node getNext() {
+			return next;
+		}
 
-class Node {
+		public void setNext(Node next) {
+			this.next = next;
+		}
 
-    private int data;
-    private Node next;
+		public Node(int data) {
+			super();
+			this.data = data;
+		}
 
-    public int getData() {
-        return data;
-    }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
-    }
-
-    public Node(int data) {
-        super();
-        this.data = data;
-    }
-
+	}
 }
