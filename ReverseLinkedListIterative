@@ -1,0 +1,130 @@
+package linkedlist.reverse.iterative;
+
+/**
+ * <b>IDeserve <br>
+ * <a href="https://www.youtube.com/c/IDeserve">https://www.youtube.com/c/IDeserve</a>
+ * <br><br>
+ * Reverse a linked list - Iterative Solution</b><br>
+ * Given a linked list having n nodes. Reverse the list by nodes.
+ * <br><br>
+ * Example: <br>
+ * Linked List: <br>
+ * 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> X
+ * <br>
+ * Output: <br>
+ * 10 -> 9 -> 8 -> 7 -> 6 -> 5 -> 4 -> 3 -> 2 -> 1 -> X
+ * <br><br>
+ * <a href="https://www.youtube.com/watch?v=uJZMxWhYTJk">Reverse a linked list - Iterative Solution Youtube Link</a> 
+ * @author Saurabh
+ *
+ */
+public class ReverseLinkedListIterative {
+	
+	private Node head;
+
+	public Node getHead() {
+		return head;
+	}
+
+	public void setHead(Node head) {
+		this.head = head;
+	}
+	
+	public void reverseList() {
+		
+		Node prev = null;
+		Node curr = null;
+		Node nxt = head;
+		
+		while(nxt != null) {
+			curr = nxt;
+			nxt = nxt.getNext();
+			curr.setNext(prev);
+			prev = curr;
+		}
+		head = curr;
+	}
+	
+	/* 
+	 * ******************************************************
+	 * Following methods are for testing reverseList
+	 * ******************************************************
+	 */
+    public static void main(String[] args) {
+		
+    	ReverseLinkedListIterative list = new ReverseLinkedListIterative();
+		list.createTestList(10);
+		list.printlist();
+		list.reverseList();
+		list.printlist();
+	}
+
+	/*
+	 * Create a test list having n nodes from 1 to n 
+	 */
+	public void createTestList(int n) {
+		
+		if(n < 1)
+			return;
+		
+		int i = 1;
+		Node temp = null;
+		while(i <= n) {
+			Node node = new Node(i);		
+			if(head == null) {
+				head = node;
+				temp = head;
+			} else {
+				temp.setNext(node);
+				temp = node;
+			}
+			i++;
+		}
+	}
+	
+	/*
+	 * Print the list
+	 */
+	public void printlist() {
+		
+		Node temp = head;
+		while(temp != null) {
+			System.out.print(temp.getData() + " -> ");
+			temp = temp.getNext();
+		}
+		System.out.println("X");
+	}
+	
+	/**
+	 * Defines a linked list node class
+	 * @author Saurabh
+	 *
+	 */
+	class Node {
+
+		private int data;
+		private Node next;
+
+		public int getData() {
+			return data;
+		}
+
+		public void setData(int data) {
+			this.data = data;
+		}
+
+		public Node getNext() {
+			return next;
+		}
+
+		public void setNext(Node next) {
+			this.next = next;
+		}
+
+		public Node(int data) {
+			super();
+			this.data = data;
+		}
+
+	}
+}

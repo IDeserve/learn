@@ -1,9 +1,10 @@
 package friendcircles;
 
 /**
- * <b>IDeserve
+ * <b>IDeserve <br>
+ * <a href="https://www.youtube.com/c/IDeserve">https://www.youtube.com/c/IDeserve</a>
  * <br><br>
- * Friend Circles Problem:</b><br>
+ * Friend Circles Graph Problem:</b><br>
  * There are n students in a class. 
  * Every student can have 0 or more friends. 
  * If A is a friend of B and B is a friend of C then A and C are also friends. 

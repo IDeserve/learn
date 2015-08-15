@@ -1,8 +1,25 @@
-package questions.saurabh;
+package binarysearch;
 
+/**
+ * <b>IDeserve <br>
+ * <a href="https://www.youtube.com/c/IDeserve">https://www.youtube.com/c/IDeserve</a>
+ * <br><br>
+ * Binary Search</b><br>
+ * Given a sorted integer array and an integer, find the index of the integer in the array. If not found, return -1.
+ * 
+ * Example: <br>
+ * array = { 21, 32, 43, 74, 75, 86, 97, 108, 149 }
+ * <br>
+ * integer = 43
+ * <br>
+ * Output: 2
+ * <br><br>
+ * <a href="https://www.youtube.com/watch?v=PWFCbWt7VwY">Binary Search Youtube Link</a> 
+ * @author Saurabh
+ *
+ */
 public class BinarySearch {
 	
-	// Binary Search - in a sorted array
 	public static int findElementBinarySearch(int[] array, int num) {
 
 		if (array == null || array.length == 0) {
@@ -23,7 +40,7 @@ public class BinarySearch {
 			}
 
 			if (end - start <= 1) {
-				return num == array[start] ? start : (num == array[end] ? end : -1);
+				return -1;	// We have already checked above that num is not equal to start or end
 			}
 
 			mid = (start + end) / 2;

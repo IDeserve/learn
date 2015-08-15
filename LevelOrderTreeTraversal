@@ -1,0 +1,143 @@
+package tree.levelOrder;
+
+import java.util.LinkedList;
+
+/**
+ * <b>IDeserve <br>
+ * <a href="https://www.youtube.com/c/IDeserve">https://www.youtube.com/c/IDeserve</a>
+ * <br><br>
+ * Level Order Traversal of a Binary Tree</b><br>
+ * Given a sorted integer array and an integer, find the index of the integer in the array. If not found, return -1.
+ * <br><br>
+ * <a href="https://www.youtube.com/watch?v=46CyhfdgBkQ">Level Order Traversal Youtube Link</a> 
+ * @author Saurabh
+ * 
+ */
+public class LevelOrderTreeTraversal {
+
+	private TreeNode root;
+	
+	public TreeNode getRoot() {
+		return root;
+	}
+
+	public void printLevelOrderTraversal() {
+		printLevelOrderTraversalHelper(root);
+	}
+
+	private void printLevelOrderTraversalHelper(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		
+		LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+		queue.add(root);
+		
+		while(!queue.isEmpty()) {
+			TreeNode node = queue.remove();
+			System.out.print(node.getData() + " ");
+			if(node.getLeft() != null) {
+				queue.add(node.getLeft());
+			}
+			if(node.getRight() != null) {
+				queue.add(node.getRight());
+			}
+		}
+	}
+	
+	/**
+	 * Defines a tree node
+	 * @author Saurabh
+	 *
+	 */
+	class TreeNode {
+		
+		private int data;
+		private TreeNode left;
+		private TreeNode right;
+		
+		public TreeNode(int data, TreeNode left, TreeNode right) {
+			super();
+			this.data = data;
+			this.left = left;
+			this.right = right;
+		}
+
+		public int getData() {
+			return data;
+		}
+
+		public void setData(int data) {
+			this.data = data;
+		}
+
+		public TreeNode getLeft() {
+			return left;
+		}
+
+		public void setLeft(TreeNode left) {
+			this.left = left;
+		}
+
+		public TreeNode getRight() {
+			return right;
+		}
+
+		public void setRight(TreeNode right) {
+			this.right = right;
+		}
+
+		public TreeNode() {
+			super();
+		}
+
+		public TreeNode(int data) {
+			super();
+			this.data = data;
+		}
+		
+		@Override
+		public String toString() {
+			return data+""; 
+		}
+	}
+	
+	/*
+	 * *****************************************
+	 * Methods for testing level order traversal
+	 * *****************************************
+	 */
+	public static void main(String[] args) {
+		LevelOrderTreeTraversal tree = new LevelOrderTreeTraversal();
+		tree.createSampleTree();
+		tree.printLevelOrderTraversal();
+	}
+	
+	/*
+	 * Create a sample tree
+	 * 				1
+	 * 		2				3
+	 * 4		5		6		7
+	 * 
+	 */
+	public void createSampleTree() {
+		root = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3, new TreeNode(6), new TreeNode(7)));		
+	}
+
+	/*
+	 * Print inorder traversal
+	 */
+	public void printInorder() {
+		printInorder(root);
+	}
+	
+	private void printInorder(TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		printInorder(root.getLeft());
+		System.out.print(root.getData() + " ");
+		printInorder(root.getRight());
+	}
+	
+}
