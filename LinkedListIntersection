@@ -1,0 +1,181 @@
+package questions.saurabh;
+
+/**
+ * <b>IDeserve <br>
+ * <a href="https://www.youtube.com/c/IDeserve">https://www.youtube.com/c/IDeserve</a>
+ * <br><br>
+ * Linked List Intersection</b><br>
+ * Two linked lists list1 and list2 are joined a particular node, called the point of intersection of the linked lists. 
+ * Find the point of intersection, i.e. the first node after which both lists have same nodes.
+ * 
+ * Example: <br>
+ * List1: 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 - 10 - X
+ * <br>
+ * List2: 11 - 12 - 13 - 14 - 15 - 5 - 6 - 7 - 8 - 9 - 10 - X
+ * <br>
+ * <br>
+ * Output: 5
+ * <br><br>
+ * <a href="https://www.youtube.com/watch?v=l936ym8yDSo">Linked List Intersection Youtube Link</a> 
+ * @author Saurabh
+ *
+ */
+public class LinkedListIntersection {
+	
+	private Node head; 
+	
+	public void addToList(int num) {
+		
+		if(head == null) {
+			head = new Node(num);
+			return;
+		}
+		
+		Node tmp = head;
+		while(tmp.getNext() != null) {
+			tmp = tmp.getNext();
+		}
+		tmp.setNext(new Node(num));
+	}
+
+	/**
+	 * Find intersection of two Linked Lists - O(A + B) Time Complexity and O(1) Space Complexity
+	 * @param list1
+	 * @param list2
+	 * @return intersection node if found, else null
+	 */
+	public static Node getIntersection(LinkedListIntersection list1, LinkedListIntersection list2) {
+		
+		// Get length of list 1
+		int length1 = 0;
+		Node tmp1 = list1.getHead();
+		while(tmp1.getNext() != null) {
+			length1++;
+			tmp1 = tmp1.getNext();		
+		}
+		
+		// Get length of list 2
+		int length2 = 0;
+	    Node tmp2 = list2.getHead();
+		while(tmp2.getNext() != null) {
+			length2++;
+			tmp2 = tmp2.getNext();		
+		}
+		
+		if(tmp1 != tmp2) {
+			return null;
+		}
+
+		int diff = 0;
+		if(length1 > length2) {
+			tmp1 = list1.getHead();
+			tmp2 = list2.getHead();
+			diff = length1 - length2;
+		} else {
+			tmp1 = list2.getHead();
+			tmp2 = list1.getHead();
+			diff = length2 - length1;
+		}
+		while(diff > 0) {
+			tmp1 = tmp1.getNext();
+			diff--;
+		}
+		while(tmp1 != tmp2) {
+			tmp1 = tmp1.getNext();
+			tmp2 = tmp2.getNext();
+		}
+		return tmp1;
+	}
+
+	public Node getHead() {
+		return head;
+	}
+	
+	public void setHead(Node head) {
+		this.head = head;
+	}
+
+	public void printList() {
+
+		Node tmp = head;
+		while(tmp != null) {
+			System.out.print(tmp.getData() + " - ");
+			tmp = tmp.getNext();
+		}
+		System.out.println("X");
+	}
+
+	// Main method to test
+	public static void main(String[] args) {
+		
+		// List 1 having numbers 1 - 10
+		LinkedListIntersection list1 = new LinkedListIntersection();
+		int i = 1;
+		int n = 11;
+		while(i < n) {
+			list1.addToList(i);
+			i++;
+		}
+		
+		// List 2 having numbers 11 - 15
+		LinkedListIntersection list2 = new LinkedListIntersection();
+		i = 11;
+		n = 16;
+		while(i < n) {
+			list2.addToList(i);
+			i++;
+		}
+		
+		// code to mock intersection by adding node 5 to end of list 2
+		Node tmp1 = list1.getHead();
+		i = 1;
+		n = 5;
+		while(i < n) {
+			tmp1 = tmp1.getNext();
+			i++;
+		}
+		
+		Node tmp2 = list2.getHead();
+		while(tmp2.getNext() != null) {
+			tmp2 = tmp2.getNext();
+		}
+		tmp2.setNext(tmp1);
+		
+		list1.printList();
+		list2.printList();		
+		
+		Node intersection = LinkedListIntersection.getIntersection(list1, list2);
+		if(intersection != null) {
+		    System.out.println("Intersection of linked lists found at Node " + intersection.getData());
+		} else {
+			System.out.println("Linked lists do not intersect!");
+		}
+	}
+	
+	// Definition of linked list node
+	class Node {
+
+		private int data;
+		private Node next;
+
+		public Node(int data) {
+			this.data = data;		
+		}
+
+		public int getData() {
+			return data;
+		}
+
+		public void setData(int data) {
+			this.data = data;
+		}
+
+		public Node getNext() {
+			return next;
+		}
+
+		public void setNext(Node next) {
+			this.next = next;
+		}	
+	}
+}
