@@ -1,0 +1,94 @@
+package array;
+
+/**
+ * <b>IDeserve <br>
+ * <a href="https://www.youtube.com/c/IDeserve">https://www.youtube.com/c/
+ * IDeserve</a> <br>
+ * <br>
+ * Find Pivot in Sorted Rotated Array</b><br>
+ * Given a sorted integer array which is rotated any number of times, find the
+ * pivot index i.e. index of the minimum element of the array.
+ * 
+ * Example: In array {78, 82, 99, 10, 23, 35, 49, 51, 60}<br/>
+ * Pivot index is 3
+ * 
+ * <br>
+ * <br>
+ * <a href="https://www.youtube.com/watch?v=ggLGjf_XiNQ">Find Pivot in Sorted
+ * Rotated Array Youtube Link</a>
+ * 
+ * @author Saurabh
+ *
+ */
+public class FindPivotInSortedRotatedArray {
+
+	// O(n) solution - Linear Search
+	public static int findPivotLinear(int[] array) {
+		int pivot = -1;
+
+		if (array != null && array.length > 0) {
+
+			pivot = 0;
+			for (int i = 0; i < array.length - 1; i++) {
+				if (array[i] > array[i + 1]) {
+					pivot = i + 1;
+					break;
+				}
+			}
+		}
+		return pivot;
+	}
+
+	// O(log n) solution - Binary Search
+	public static int findPivotBinarySearch(int[] array) {
+
+		if (array == null || array.length == 0) {
+			return -1;
+		}
+
+		// Case when array is not rotated. Then first index is the pivot
+		if (array[0] <= array[array.length - 1]) {
+			return 0;
+		}
+
+		int start = 0, end = array.length - 1;
+
+		while (start <= end) {
+
+			int mid = (start + end) / 2;
+			// check if mid+1 is pivot
+			if (array[mid] > array[mid + 1]) {
+				return (mid + 1);
+			} else if (array[start] <= array[mid]) {
+				// If array[start] <= array[mid],
+				// it means from start to mid, all elements are in sorted order,
+				// so pivot will be in second half
+				start = mid + 1;
+			} else {
+				// else pivot lies in first half, so we find the pivot in first half
+				end = mid - 1;
+			}
+		}
+
+		return 0;
+	}
+
+	public static void main(String[] args) {
+
+		int array[] = { 5, 4 };
+		findPivotLinearTest(array);
+		findPivotBinarySearchTest(array);
+	}
+
+	public static void findPivotLinearTest(int array[]) {
+		int index = findPivotLinear(array);
+		System.out.println("Pivot "
+				+ (index >= 0 ? (" found at index " + index) : " not found!"));
+	}
+
+	public static void findPivotBinarySearchTest(int array[]) {
+		int index = findPivotBinarySearch(array);
+		System.out.println("Pivot "
+				+ (index >= 0 ? (" found at index " + index) : " not found!"));
+	}
+}
