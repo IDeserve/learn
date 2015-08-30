@@ -57,7 +57,7 @@ public class FindPivotInSortedRotatedArray {
 
 			int mid = (start + end) / 2;
 			// check if mid+1 is pivot
-			if (array[mid] > array[mid + 1]) {
+			if (mid < array.length-1 && array[mid] > array[mid+1]) {
 				return (mid + 1);
 			} else if (array[start] <= array[mid]) {
 				// If array[start] <= array[mid],
