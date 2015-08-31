@@ -32,7 +32,46 @@ public class kmpAlgorithm {
 	    }
 	}
 	
-
+	public void patternSearch(String pattern, String text, int[] lps)
+	{
+		int pat_index = 0, text_index = 0;
+		
+		if(pattern.length() == 0)
+		{
+			return;
+		}
+		
+		while(text_index < text.length())
+		{
+			// if characters match, look for next character match
+			if(pattern.charAt(pat_index) == text.charAt(text_index))
+			{
+				pat_index++; text_index++;
+				
+				// indicates that complete pattern has matched
+				if(pat_index == pattern.length())
+				{
+					System.out.println("Match");
+					pat_index = lps[pat_index-1];
+				}
+			}
+			
+			// if the characters do not match, don't go back in the text. Just adjust the pattern_index
+			else 
+			{
+				if(pat_index != 0)
+				{
+					pat_index = lps[pat_index-1];
+				}
+				else
+				{
+					text_index++;
+				}
+			}
+		}
+	 }
+	
+	
 	public static void main(String []args)
 	{
 		kmpAlgorithm solution = new kmpAlgorithm();
@@ -45,5 +84,10 @@ public class kmpAlgorithm {
 		{
 			System.out.println(lps[i]);
 		}
+		
+		
+		String text = "ananab#banancananab#banana";
+		
+		solution.patternSearch(pattern, text, lps);
 	}
 }
