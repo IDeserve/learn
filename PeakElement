@@ -17,7 +17,7 @@ package array;
  */
 public class PeakElement {
 
-	private static Integer getPeakElement(int[] array) {
+	public static Integer getPeakElement(int[] array) {
 		
 		if(array == null || array.length == 0) {
 			return null;
