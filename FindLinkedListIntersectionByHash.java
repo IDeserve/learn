@@ -1,4 +1,4 @@
-package linkedlist.intersection;
+package com.ideserve.questions.saurabh.linkedlist.intersection;
 
 import java.util.HashSet;
 
