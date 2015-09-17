@@ -1,7 +1,5 @@
 package binarysearch;
 
-import java.util.Arrays;
-
 /**
  * <b>IDeserve <br>
  * <a href="https://www.youtube.com/c/IDeserve">https://www.youtube.com/c/IDeserve</a>
@@ -97,13 +95,11 @@ public class FindElementSortedRotatedArray {
 	public static void main(String[] args) {
 			int array[] = { 156, 235, 457, 21, 32, 43, 74, 75, 86, 97, 108, 149 };
 			findElementInSortedRotatedArrayTest(array, 43);
-			findElementInSortedRotatedArrayTest(array, 89);
-			binarySearch(array, -1, 9, 457);
 	}
 
 	private static void findElementInSortedRotatedArrayTest(int[] array, int num) {		
 		int index = findElementInSortedRotatedArray(array, num);
-		System.out.println(Arrays.toString(array) + "    Element " + num + (index >= 0 ? (" found at index " + index) : " not found!"));
+		System.out.println("Element " + num + (index >= 0 ? (" found at index " + index) : " not found!"));
 	}
 
 }
