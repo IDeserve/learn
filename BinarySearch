@@ -48,8 +48,6 @@ public class BinarySearch {
 		int array[] = { 21, 32, 43, 74, 75, 86, 97, 108, 149 };
 		int num = 43;
 		binarySearchTest(array,num);
-		num = 100;
-		binarySearchTest(array, num);
 	}
 	
 	public static void binarySearchTest(int array[], int num) {
