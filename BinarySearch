@@ -1,4 +1,4 @@
-package questions.saurabh;
+package binarysearch;
 
 /**
  * <b>IDeserve <br>
@@ -28,22 +28,9 @@ public class BinarySearch {
 
 		int start = 0;
 		int end = array.length - 1;
-		int mid;
 
 		while (start <= end) {
-
-			if (num == array[start]) {
-				return start;
-			}
-			if (num == array[end]) {
-				return end;
-			}
-
-			if (end - start <= 1) {
-				return -1;	// We have already checked above that num is not equal to start or end
-			}
-
-			mid = (start + end) / 2;
+			int mid = (start + end) / 2;
 			if (array[mid] == num) {
 				return mid;
 			} else if (num < array[mid]) {
