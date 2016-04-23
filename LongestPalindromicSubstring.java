@@ -35,7 +35,7 @@ public class LongestPalindromicSubstring {
 		      }
 		    }
 		  }
-		  return s.substring(palindromeBeginsAt, max_len + 1);
+		  return s.substring(palindromeBeginsAt, max_len + palindromeBeginsAt);
 		}
 
 	public static void main(String args[])
